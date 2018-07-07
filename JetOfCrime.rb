@@ -1,6 +1,6 @@
 require 'gosu'
 require './player.rb'
-require "./laser.rb"
+require './laser.rb'
 
 class Tutorial < Gosu::Window
 
@@ -22,7 +22,7 @@ class Tutorial < Gosu::Window
 
   def update
     if Gosu.button_down? Gosu::KB_LEFT or Gosu::button_down? Gosu::GP_LEFT
-      @laser.shoot
+      @player.turn_left
     end
     if Gosu.button_down? Gosu::KB_RIGHT or Gosu::button_down? Gosu::GP_RIGHT
       @player.turn_right
@@ -34,10 +34,16 @@ class Tutorial < Gosu::Window
       @player.backwards
     end
     @player.move
+
+    if Gosu.button_down? Gosu::KB_SPACE
+      @laser.shoot
+      @laser.move
+    end
   end
 
   def draw
     @player.draw
+    @laser.draw
     @background_image.draw(0, 0, 0)
   end
 
