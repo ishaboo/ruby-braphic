@@ -1,10 +1,15 @@
 class Laser
+  attr_accessor :x, :y
   def initialize
     @laser = Gosu::Image.new("media/laser.htm")
     @name = 'Laser'
-    @x = @y = @vel_x = @vel_y = @angle = 5.5
-    @speed = 0.6
+    @x = @y = @vel_x = @vel_y = @angle = 1.0
+    @speed = 20.5
     @image = Gosu::Image.new(@laser)
+  end
+
+  def warp(x, y)
+    @x, @y = x, y
   end
 
   def shoot
@@ -22,7 +27,7 @@ class Laser
     @x %= 999
     @y %= 600
 
-    @vel_x *= 0.95
-    @vel_y *= 0.95
+    @vel_x *= 0.1
+    @vel_y *= 0.1
   end
 end
