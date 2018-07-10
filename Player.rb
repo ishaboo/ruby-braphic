@@ -1,4 +1,5 @@
 class Player
+  attr_accessor :x, :y
   def initialize
     @num = rand(5)
     if @num == 1
@@ -38,15 +39,15 @@ class Player
   def warp(x, y)
     @x, @y = x, y
   end
-  
+
   def turn_left
     @angle -= 4.5
   end
-  
+
   def turn_right
     @angle += 4.5
   end
-  
+
   def accelerate
     @vel_x += Gosu.offset_x(@angle, @speed)
     @vel_y += Gosu.offset_y(@angle, @speed)
@@ -56,13 +57,13 @@ class Player
     @vel_x += Gosu.offset_x(@angle, -@speed)
     @vel_y += Gosu.offset_y(@angle, -@speed)
   end
-  
+
   def move
     @x += @vel_x
     @y += @vel_y
     @x %= 999
     @y %= 600
-    
+
     @vel_x *= 0.95
     @vel_y *= 0.95
   end
@@ -71,4 +72,3 @@ class Player
     @image.draw_rot(@x, @y, 1, @angle)
   end
 end
-
