@@ -1,6 +1,7 @@
 require 'gosu'
 require './player.rb'
 require './laser.rb'
+require 'pry-byebug'
 
 class Tutorial < Gosu::Window
 
@@ -36,6 +37,8 @@ class Tutorial < Gosu::Window
     @player.move
 
     if Gosu.button_down? Gosu::KB_SPACE
+      # binding.pry
+      @laser.warp(@player.x, @player.y)
       @laser.shoot
       @laser.move
     end
